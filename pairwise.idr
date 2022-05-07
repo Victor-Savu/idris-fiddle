@@ -3,9 +3,12 @@ import Data.Nat
 
 pairwise : {n: Nat} -> Vect (n+n) a -> Vect n (a, a)
 pairwise {n = 0} _ = Nil
-pairwise {n = 1} [x, y] = [(x, y)]
-pairwise {n = S (S k)} (x::y::xs) =
-    (x, y)::(pairwise (
-        rewrite sym (plusSuccRightSucc k k) in
-        rewrite sym (plusCommutative k (S (S k))) in
-        xs))
+pairwise {n = S k} (x::xs) =
+    let
+        vectPlusSuccRightSucc : Vect (n + S n) a -> Vect (S (n+n)) a
+        vectPlusSuccRightSucc as = rewrite plusSuccRightSucc n n in as
+    in
+    let
+        y::ys = vectPlusSuccRightSucc xs
+    in
+        (x, y)::(pairwise ys)

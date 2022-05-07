@@ -5,10 +5,6 @@ pairwise : {n: Nat} -> Vect (n+n) a -> Vect n (a, a)
 pairwise {n = 0} _ = Nil
 pairwise {n = S k} (x::xs) =
     let
-        vectPlusSuccRightSucc : Vect (n + S n) a -> Vect (S (n+n)) a
-        vectPlusSuccRightSucc as = rewrite plusSuccRightSucc n n in as
-    in
-    let
-        y::ys = vectPlusSuccRightSucc xs
+        y::ys = replace {p = \k => Vect k a} (sym (plusSuccRightSucc k k)) xs
     in
         (x, y)::(pairwise ys)

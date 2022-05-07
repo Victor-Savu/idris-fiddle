@@ -1,6 +1,11 @@
+module Pairwise
+
 import Data.Vect
 import Data.Nat
 
+%default total
+
+export
 pairwise : {n: Nat} -> Vect (n+n) a -> Vect n (a, a)
 pairwise {n = 0} _ = Nil
 pairwise {n = S k} (x::xs) =

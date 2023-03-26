@@ -1,4 +1,4 @@
-I wrote this as an exercie proposed by my work colleague and office neighbor:
+I wrote this as an exercise proposed by my work colleague and office neighbor:
 
 > Implement a (dependently typed) function that given a list of even length
 > returns a list half the size by pairing up the elements on even indices
